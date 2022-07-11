@@ -60,8 +60,8 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                        onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -95,6 +95,11 @@
               <div class="card h-100">
                 <div class="card-header d-flex">メモ一覧 <a class='ml-auto' href='/create'><i class="fas fa-plus-circle"></i></a></div>
                 <div class="card-body p-2">
+                    {{-- {{ dd($memos) }} --}}
+            @foreach ($memos as $memo)
+                    <p>{{ $memo['content'] }}</p>
+
+            @endforeach
                 </div>
               </div>
             </div> <!-- col-md-3 -->
