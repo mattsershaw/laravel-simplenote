@@ -38,7 +38,14 @@ class HomeController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        dd($data);
+        // dd($data);
+
+        // カラム名を指定
+        $memo_id = Memo::insertGetId([
+            'content' => $data['content'],
+            'user_id' => $data['user_id'],
+            'status' => 1
+        ]);
 
         // リダイレクト処理
         return redirect()->route('home');
