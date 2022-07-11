@@ -97,8 +97,7 @@
                 <div class="card-body p-2">
                     {{-- {{ dd($memos) }} --}}
             @foreach ($memos as $memo)
-                    <p>{{ $memo['content'] }}</p>
-
+                    <a href='/edit/{{ $memo['id'] }}'>{{ $memo['content'] }}</a>
             @endforeach
                 </div>
               </div>
