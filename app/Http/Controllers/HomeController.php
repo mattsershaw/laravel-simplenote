@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Memo;
+use App\Tag;
 
 class HomeController extends Controller
 {
@@ -24,5 +26,21 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function create()
+    {
+        // ログインしているユーザー情報をViewに渡す
+        $user = \Auth::user();
+        return view('create', compact('user'));
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->all();
+        dd($data);
+
+        // リダイレクト処理
+        return redirect()->route('home');
     }
 }
