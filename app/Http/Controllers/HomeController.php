@@ -45,7 +45,14 @@ class HomeController extends Controller
         $data = $request->all();
         // dd($data);
 
-        $tag_id = Tag::insertGetId(['name' => $data['tag'], 'user_id' => $data['user_id']]);
+        // 存在すればtrue、そうでなければfalseが返ってくる
+        $exist_tag = Tag::where('name', $data['tag'])->where('user_id', $data['user_id'])->first();
+        // dd($is_exist);
+        if(empty($exist_tag['id'])) {
+            $tag_id = Tag::insertGetId(['name' => $data['tag'], 'user_id' => $data['user_id']]);
+        } else {
+            $tag_id = $exist_tag['id'];
+        }
 
         // カラム名を指定
         $memo_id = Memo::insertGetId([
